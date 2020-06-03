@@ -15,7 +15,7 @@ public class BIOServer {
 
         System.out.println("服务器启动了...");
 
-        ServerSocket serverSocket = new ServerSocket(6666);
+        ServerSocket serverSocket = new ServerSocket(9999);
 
         while (true) {
             // 监听，等待客户端连接
