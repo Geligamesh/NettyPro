@@ -4,14 +4,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 public class BIOServer {
 
     public static void main(String[] args) throws IOException {
 
-        ExecutorService newCachedThreadPool = Executors.newCachedThreadPool();
+        ExecutorService executorService = new ThreadPoolExecutor(5, 100, 10
+                ,TimeUnit.SECONDS
+                ,new ArrayBlockingQueue<>(1000)
+                ,Executors.defaultThreadFactory()
+                ,new ThreadPoolExecutor.CallerRunsPolicy());
 
         System.out.println("服务器启动了...");
 
@@ -22,7 +25,7 @@ public class BIOServer {
             final Socket socket = serverSocket.accept();
             System.out.println("连接到一个客户端");
             // 就创建一个线程，与之通信（单独写一个方法）
-            newCachedThreadPool.execute(() -> {
+            executorService.execute(() -> {
                 // 可以和客户端通讯
                 handler(socket);
             });
