@@ -10,7 +10,7 @@ public class BIOServer {
 
     public static void main(String[] args) throws IOException {
 
-        ExecutorService executorService = new ThreadPoolExecutor(5, 10, 10
+        ExecutorService executorService = new ThreadPoolExecutor(5, 100, 10
                 ,TimeUnit.SECONDS
                 ,new ArrayBlockingQueue<>(1000)
                 ,Executors.defaultThreadFactory()
