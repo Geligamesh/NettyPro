@@ -17,6 +17,8 @@ public class BasicBuffer {
         //从buffer中读取数据
         //将buffer转换，读写切换
         intBuffer.flip();
+        intBuffer.position(1); // 2,4,6,8
+        intBuffer.limit(3);
         while (intBuffer.hasRemaining()) {
              System.out.println(intBuffer.get());
         }
